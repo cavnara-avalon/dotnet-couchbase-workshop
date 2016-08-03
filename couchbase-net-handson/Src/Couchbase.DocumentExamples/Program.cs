@@ -24,8 +24,10 @@ namespace Couchbase.DocumentExamples
        
         static void Main(string[] args)
         {
+            /* initialize the Cluster here. */
             using (var bucket = _cluster.OpenBucket())
             {
+                /* place a breakpoint here to watch the fun! */
                 var document = InsertDocument(bucket);
                 GetDocument(bucket, document.Id);
                 ReplaceDocument(bucket, document);
@@ -48,7 +50,8 @@ namespace Couchbase.DocumentExamples
                 }
             };
 
-            var result = bucket.Insert(document);
+            // insert the document here 
+            var result = new { Success = false };
             if (result.Success)
             {
                 Console.WriteLine("Inserted document '{0}'", document.Id);
@@ -58,7 +61,8 @@ namespace Couchbase.DocumentExamples
 
         static void GetDocument(IBucket bucket, string id)
         {
-            var result = bucket.GetDocument<Person>("P1");
+            //get the document here
+            var result = new { Success = false,  Content = new { FirstName = String.Empty,  LastName=String.Empty}};
             if (result.Success)
             {
                 var person = result.Content;
@@ -72,7 +76,10 @@ namespace Couchbase.DocumentExamples
             person.FirstName = "Tom";
             person.LastName = "Finnigan";
 
-            if (bucket.Replace(document).Success)
+            //replace the document here! 
+            var replaceResult = new { Success = false };
+
+            if (replaceResult.Success)
             {
                 var result = bucket.GetDocument<Person>("P1");
                 if (result.Success)
@@ -86,8 +93,9 @@ namespace Couchbase.DocumentExamples
 
         static void DeleteDocument(IBucket bucket, Document<Person> document)
         {
-            var result = bucket.Remove(document);
-            if(result.Success)
+            //Remove the document here! 
+            var result = new { Success = false };
+            if (result.Success)
             {
                Console.WriteLine("Deleted document '{0}'", document.Id);
             }

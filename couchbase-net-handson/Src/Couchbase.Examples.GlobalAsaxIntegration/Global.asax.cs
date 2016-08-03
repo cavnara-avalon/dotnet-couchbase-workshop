@@ -20,6 +20,7 @@ namespace Couchbase.Examples.GlobalAsaxIntegration
 
             //Initialize the helper
             var config = new ClientConfiguration();
+            //just an example; the client config would contain your addresses of the cluster/server. 
             ClusterHelper.Initialize(config);
         }
 

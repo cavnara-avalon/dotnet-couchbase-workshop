@@ -13,6 +13,7 @@ namespace Couchbase.IncrementExample
 
         static void Main(string[] args)
         {
+            //Initialize your Cluster here. 
             using (var bucket = _cluster.OpenBucket())
             {
                 var key = "stats::counter1";
@@ -28,7 +29,8 @@ namespace Couchbase.IncrementExample
 
         static void Increment(IBucket bucket, string key)
         {
-            var result = bucket.Increment(key);
+            //replace this line with one that uses Increment on the key given. 
+            var result = new { Success = false, Value="Foo" };
             if (result.Success)
             {
                 Console.WriteLine(result.Value);
@@ -37,7 +39,8 @@ namespace Couchbase.IncrementExample
 
         static void Decrement(IBucket bucket, string key)
         {
-            var result = bucket.Decrement(key);
+            //replace this line with one that uses Decrement on the key given. 
+            var result = new { Success = false, Value = "Foo" };
             if (result.Success)
             {
                 Console.WriteLine(result.Value);

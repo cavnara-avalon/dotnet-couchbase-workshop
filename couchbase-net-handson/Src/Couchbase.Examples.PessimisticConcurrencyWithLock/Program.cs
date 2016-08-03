@@ -17,7 +17,7 @@ namespace Couchbase.Examples.PessimisticConcurrencyWithLock
             {
                 Servers = new List<Uri>
                 {
-                    new Uri("http://localhost:8091/")
+                    //replace this with your server address!
                 }
             });
             var bucket = ClusterHelper.GetBucket("default");
@@ -46,7 +46,7 @@ namespace Couchbase.Examples.PessimisticConcurrencyWithLock
             var success = false;
 
             //get the original document - if it doesn't exist fail
-            var result = await bucket.GetWithLockAsync<Post>(modified.PostId, TimeSpan.FromSeconds(5));
+            var result = await bucket.GetAndLockAsync<Post>(modified.PostId, TimeSpan.FromSeconds(5));
             if (result.Success)
             {
                 //update the original documents fields

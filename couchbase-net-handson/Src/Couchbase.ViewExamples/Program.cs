@@ -23,10 +23,8 @@ namespace Couchbase.ViewExamples
 
         static void BasicQuery(IBucket bucket)
         {
-            var query = bucket.CreateQuery("beer", "brewery_beers").
-                Limit(5);
-
-            var result = bucket.Query<dynamic>(query);
+            //replace this line and create a query object and then get the results from it. 
+            var result = new { Rows = new List<string>() };
             foreach (var row in result.Rows)
             {
                 Console.WriteLine(row);

@@ -13,9 +13,11 @@ namespace Couchbase.N1QLExamples
 
         static void Main(string[] args)
         {
+            //initialize your cluster here. 
             using (var bucket = _cluster.OpenBucket())
             {
-                const string query = "SELECT c FROM tutorial as c";
+                //play around with N1QL queries here! 
+                const string query = "SELECT c FROM default as c";
                 var result = bucket.Query<dynamic>(query);
                 foreach (var row in result.Rows)
                 {

@@ -19,7 +19,7 @@ namespace Couchbase.Examples.ReplicateTo
             {
                 Servers = new List<Uri>
                 {
-                    new Uri("http://localhost:8091/")
+                    //insert your address here! 
                 }
             });
             _bucket = ClusterHelper.GetBucket("default");
@@ -43,7 +43,8 @@ namespace Couchbase.Examples.ReplicateTo
 
         private static async Task<bool> InsertWithReplicateTo(Post value)
         {
-            var result = await _bucket.UpsertAsync(value.PostId, value, Couchbase.ReplicateTo.Two);
+            //replace this line with an await statement that uses InsertAsync/UpsertAsync with PersistTo value of Two. 
+            var result = new { Success = false };
             if (result.Success)
             {
                 return true;

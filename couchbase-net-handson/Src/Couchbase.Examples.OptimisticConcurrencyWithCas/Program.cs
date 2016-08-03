@@ -15,7 +15,7 @@ namespace Couchbase.Examples.OptimisticConcurrencyWithCas
             {
                 Servers = new List<Uri>
                 {
-                    new Uri("http://localhost:8091/")
+                    // place your server addresses here. 
                 }
             });
             var bucket = ClusterHelper.GetBucket("default");

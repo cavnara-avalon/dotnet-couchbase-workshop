@@ -18,7 +18,7 @@ namespace Couchbase.Examples.PersistTo
             {
                 Servers = new List<Uri>
                 {
-                     new Uri("http://localhost:8091/")
+                     //place your address here! 
                 }
             });
             _bucket = ClusterHelper.GetBucket("default");
@@ -42,7 +42,8 @@ namespace Couchbase.Examples.PersistTo
 
         static async Task<bool> InsertWithPersistTo(Post value)
         {
-            var result = await _bucket.InsertAsync(value.PostId,  value, ReplicateTo.Zero, Couchbase.PersistTo.Two);
+            //replace this line with an await statement that uses InsertAsync with PersistTo value of Two. 
+            var result = new { Success = false };
             if (result.Success)
             {
                 return true;

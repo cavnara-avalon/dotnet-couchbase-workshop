@@ -38,7 +38,6 @@ namespace CouchbaseAsyncExample
                 Servers = new List<Uri>
                 {
                     //change this to your cluster to bootstrap
-                    new Uri("http://localhost:8091/pools")
                 }
             };
 

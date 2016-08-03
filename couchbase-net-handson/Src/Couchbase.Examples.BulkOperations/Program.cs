@@ -18,24 +18,21 @@ namespace Couchbase.Examples.BulkOperations
             {
                 Servers = new List<Uri>
                 {
-                    new Uri("http://192.168.77.101:8091/")
+                    /* place your server addresses here */
                 }
             });
             _bucket = ClusterHelper.GetBucket("default");
 
-            Task.Run(async () =>
-            {
-                var tasks = await GetTasks(1000);
-                var results = await BulkUpsertAsync(tasks);
-                WriteResults(results);
-                Console.WriteLine();
-            });
+            var tasks = GetTasks(1000);
+            var results = BulkUpsertAsync(tasks);
+            WriteResults(results);
+            Console.WriteLine();
 
             Console.Read();
             ClusterHelper.Close();
         }
 
-        static Task<Dictionary<string, Post>> GetTasks(int count)
+        static Dictionary<string, Post> GetTasks(int count)
         {
             var posts = new Dictionary<string, Post>();
             for (int i = 0; i < count; i++)
@@ -49,16 +46,13 @@ namespace Couchbase.Examples.BulkOperations
                 });
             }
 
-            return Task.FromResult(posts);
+            return posts;
         }
 
-        static async Task<IDictionary<string, IOperationResult<Post>>> BulkUpsertAsync(Dictionary<string, Post> posts)
+        static IDictionary<string, IOperationResult<Post>> BulkUpsertAsync(Dictionary<string, Post> posts)
         {
-            return await Task.FromResult(_bucket.Upsert(posts,
-                new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = 4
-                }));
+            // do the bulk Upsert here! 
+            return new Dictionary<string, IOperationResult<Post>>();
         }
 
         static void WriteResults(IDictionary<string, IOperationResult<Post>> results)

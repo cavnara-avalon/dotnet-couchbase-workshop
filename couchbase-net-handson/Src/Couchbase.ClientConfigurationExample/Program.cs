@@ -12,35 +12,17 @@ namespace Couchbase.ClientConfigurationExample
     {
         static void Main(string[] args)
         {
-            //Note: change the IP's below to your own cluster's IP's to run
             var config = new ClientConfiguration
             {
                 Servers = new List<Uri>
                 {
-                    new Uri("http://192.168.56.101:8091/pools"),
-                    new Uri("http://192.168.56.102:8091/pools"),
-                    new Uri("http://192.168.56.103:8091/pools"),
-                    new Uri("http://192.168.56.104:8091/pools"),
+                    /* place your server addresses here */
                 },
-                UseSsl = false,
-                BucketConfigs = new Dictionary<string, BucketConfiguration>
-                {
-                    {"default", new BucketConfiguration
-                    {
-                        BucketName = "default",
-                        UseSsl = true,
-                        Password = "",
-                        PoolConfiguration = new PoolConfiguration
-                        {
-                            MaxSize = 10,
-                            MinSize = 5
-                        }
-                    }}
-                }
             };
 
             using (var cluster = new Cluster(config))
             {
+                Console.WriteLine("Cluster initialized");
                 IBucket bucket = null;
                 try
                 {
@@ -52,9 +34,11 @@ namespace Couchbase.ClientConfigurationExample
                     if (bucket != null)
                     {
                         cluster.CloseBucket(bucket);
+                        Console.WriteLine("Bucket disposed");
                     }
                 }
             }
+            Console.ReadLine();
         }
     }
 }
